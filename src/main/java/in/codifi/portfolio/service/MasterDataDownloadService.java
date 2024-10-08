@@ -78,6 +78,17 @@ public class MasterDataDownloadService extends RouteBuilder implements MasterDat
 			// Construct the full remote path for the CSV file
 			String remoteFilePath = remoteDirectoryPath + "/master_data.csv";
 			Log.info("Remote file path: " + remoteFilePath);
+			
+			// Check if the file exists on the remote server
+	        try {
+	            channelSftp.lstat(remoteFilePath); // This will throw an exception if the file doesn't exist
+	            Log.info("File exists on remote server: " + remoteFilePath);
+	        } catch (SftpException e) {
+	            Log.error("File does not exist on the remote server: " + remoteFilePath, e);
+	            // Handle the case when the file is not present
+	            // Show yesterday's data or perform another action as needed
+	            return prepareResponse.prepareFailedResponse("File not found, showing yesterday's data.");
+	        }
 
 			// Delete the old file if it exists in the local directory
 			File folder = new File(localDirectoryPath);
