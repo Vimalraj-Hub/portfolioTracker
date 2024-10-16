@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
@@ -24,6 +25,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "TBL_MASTER_DATA")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MasterDataEntity {
 
 	@Column(name = "ID")

@@ -1,5 +1,6 @@
 package in.codifi.portfolio.config;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -43,5 +44,6 @@ public class HazelcastConfig {
 	}
 
 	private Map<String, String> applicationProperties = getHz().getMap("applicationProperties");
+	private Map<String,BigDecimal> cachedMasterData =  getHz().getMap("cachedMasterData");
 
 }

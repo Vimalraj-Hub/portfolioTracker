@@ -26,4 +26,23 @@ public interface MasterDataDownloadServiceSpec {
 	 */
 	RestResponse<GenericResponse> getFileFromSftp();
 
+	/**
+	 * Method to load the master data from Database to cache
+	 * 
+	 * @author vimal
+	 * @return
+	 */
+	RestResponse<GenericResponse> loadCacheFromMasterDataTable();
+
+	/**
+	 * Method to calculate the portfolio score for the user holdings data according
+	 * to the score of each holding that user's has as per perivious day's data
+	 * 
+	 * @author vimal
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	RestResponse<GenericResponse> calculatePortfolioScore(String userId);
+
 }

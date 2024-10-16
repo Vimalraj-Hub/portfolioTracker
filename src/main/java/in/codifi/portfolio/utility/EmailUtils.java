@@ -48,7 +48,7 @@ public class EmailUtils {
 	 *
 	 * @param message
 	 */
-	public void failureEmail(String message) {
+	public void sendEmail(String message) {
 		ExecutorService pool = Executors.newSingleThreadExecutor();
 		pool.execute(new Runnable() {
 			@Override
