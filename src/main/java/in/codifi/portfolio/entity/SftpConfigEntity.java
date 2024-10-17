@@ -18,10 +18,9 @@ import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
-@Entity(name = "TBL_PORTFOLIO_SFTP_CONFIG")
+@Entity(name = "tbl_portfolio_sftp_config")
 public class SftpConfigEntity {
 
 	@Column(name = "ID")

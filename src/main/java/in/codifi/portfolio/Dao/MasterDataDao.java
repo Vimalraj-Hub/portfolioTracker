@@ -106,22 +106,22 @@ public class MasterDataDao {
 	public void archiveMasterData() {
 		 try {
 		        // Check if there is data in the master data table
-		        String countQuery = "SELECT COUNT(*) FROM TBL_MASTER_DATA";
+		        String countQuery = "SELECT COUNT(*) FROM tbl_master_data";
 		        long count = ((Number) entityManager.createNativeQuery(countQuery).getSingleResult()).longValue();
 
 		        // If no data exists, skip the archiving process
 		        if (count == 0) {
-		            System.out.println("No data found in TBL_MASTER_DATA to archive.");
+		            System.out.println("No data found in tbl_master_data to archive.");
 		            return; // Exit the method without archiving or deleting
 		        }
 
 		        // Archive data by inserting into the archive table, filtering out invalid entries
-		        String archiveQuery = "INSERT INTO TBL_MASTER_DATA_ARCHIVE "
-		                + "SELECT * FROM TBL_MASTER_DATA WHERE SECTOR_ID IS NOT NULL AND SECTOR_ID REGEXP '^[0-9]+$'";
+		        String archiveQuery = "INSERT INTO tbl_master_data_archive "
+		                + "SELECT * FROM tbl_master_data WHERE SECTOR_ID IS NOT NULL AND SECTOR_ID REGEXP '^[0-9]+$'";
 		        entityManager.createNativeQuery(archiveQuery).executeUpdate();
 
 		        // Optionally, delete the data from the master table after archiving
-		        String deleteQuery = "DELETE FROM TBL_MASTER_DATA";
+		        String deleteQuery = "DELETE FROM tbl_master_data";
 		        entityManager.createNativeQuery(deleteQuery).executeUpdate();
 
 		    } catch (NoResultException e) {
@@ -135,7 +135,7 @@ public class MasterDataDao {
 
 	@Transactional
 	public void truncateMasterData() {
-		String truncateQuery = "TRUNCATE TABLE TBL_MASTER_DATA";
+		String truncateQuery = "TRUNCATE TABLE tbl_master_data";
 		entityManager.createNativeQuery(truncateQuery).executeUpdate();
 	}
 

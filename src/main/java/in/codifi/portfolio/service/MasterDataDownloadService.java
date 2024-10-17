@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
-import javax.print.attribute.standard.RequestingUserName;
-
 import org.jboss.resteasy.reactive.RestResponse;
 
 import com.jcraft.jsch.ChannelSftp;
@@ -53,7 +51,6 @@ public class MasterDataDownloadService implements MasterDataDownloadServiceSpec 
 	PrepareResponse prepareResponse;
 	@Inject
 	EmailUtils emailUtils;
-
 	@Inject
 	MasterDataRepo masterDataRepo;
 	@Inject
@@ -347,8 +344,9 @@ public class MasterDataDownloadService implements MasterDataDownloadServiceSpec 
 			}
 			// get the holding data from the holding file for the userId given.
 			List<HoldingsEntity> userHoldingData = holdingEntityRepo.findAllByUserId(userId);
-			if(StringUtil.isListNullOrEmpty(userHoldingData)) {
-				return prepareResponse.prepareFailedResponse(AppConstants.FAILED_STATUS + " Due to User Holding is empty");
+			if (StringUtil.isListNullOrEmpty(userHoldingData)) {
+				return prepareResponse
+						.prepareFailedResponse(AppConstants.FAILED_STATUS + " Due to User Holding is empty");
 			}
 			BigDecimal sumofProductHoldingValueAndTLScore = BigDecimal.ZERO;
 			BigDecimal sumOfHoldingValue = BigDecimal.ZERO;

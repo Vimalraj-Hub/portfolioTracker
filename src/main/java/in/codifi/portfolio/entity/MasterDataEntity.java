@@ -24,7 +24,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "TBL_MASTER_DATA")
+@Table(name = "tbl_master_data")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MasterDataEntity {
 
